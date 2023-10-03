@@ -23,14 +23,14 @@ def main():
     kk_img = pg.image.load("ex02/fig/3.png")
     kk_img = pg.transform.rotozoom(kk_img, 0, 2.0)
     kk_rct = kk_img.get_rect()
-    kk_rct.center = (900, 400)  
+    kk_rct.center = (900, 400) 
     """ばくだん"""
-    bd_img = pg.Surface((20, 20))
+    bd_img = pg.Surface((20, 20))  
     bd_img.set_colorkey((0, 0, 0))  
     pg.draw.circle(bd_img, (255, 0, 0), (10, 10), 10)
     bd_rct = bd_img.get_rect()  
     x, y = random.randint(0, WIDTH), random.randint(0, HEIGHT)
-    bd_rct.center = (x, y) 
+    bd_rct.center = (x, y)  
     vx, vy = +5, +5  
     clock = pg.time.Clock()
     tmr = 0
@@ -39,6 +39,10 @@ def main():
             if event.type == pg.QUIT: 
                 return
 
+
+        if kk_rct.colliderect(bd_rct):  
+            print("ゲームオーバー")
+            return
 
         screen.blit(bg_img, [0, 0])
 
@@ -52,7 +56,7 @@ def main():
         kk_rct.move_ip(sum_mv[0], sum_mv[1])  
         if check_bound(kk_rct) != (True, True):  
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1]) 
-        screen.blit(kk_img, kk_rct)  
+        screen.blit(kk_img, kk_rct)
         """"ばくだん"""
         bd_rct.move_ip(vx, vy)  
         yoko, tate = check_bound(bd_rct)
