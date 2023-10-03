@@ -21,6 +21,9 @@ def main():
     
     clock = pg.time.Clock()
     tmr = 0
+    vx = +5
+    vy = +5
+    
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
@@ -28,6 +31,7 @@ def main():
 
         screen.blit(bg_img, [0, 0])
         screen.blit(kk_img, [900, 400])
+        bd_rct.move_ip(vx, vy)
         screen.blit(bd_img, bd_rct)
         pg.display.update()
         tmr += 1
